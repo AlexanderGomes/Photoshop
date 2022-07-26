@@ -1,15 +1,11 @@
 const fileInput = document.querySelector(".file-input"),
   filterOptions = document.querySelectorAll(".filter button"),
-
   filterName = document.querySelector(".filter-info .name"),
   filterValue = document.querySelector(".filter-info .value"),
-
   filterSlider = document.querySelector(".slider input"),
   rotateOptions = document.querySelectorAll(".rotate button"),
-
   previewImg = document.querySelector(".preview-img img"),
   saveImgBtn = document.querySelector(".save-img"),
-
   resetFilterBtn = document.querySelector(".reset-filter"),
   chooseImgBtn = document.querySelector(".choose-img");
 
@@ -29,8 +25,7 @@ const applyFilter = () => {
   previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
 };
 
-
-//set the varible to get the value of the input, validate in case that 
+//set the varible to get the value of the input, validate in case that
 //there's not file;
 
 //grab the src of the img and create a URL object passing the file you're
@@ -47,7 +42,6 @@ const loadImage = () => {
   });
 };
 
-
 //giving an event click to each option, removing and adding the active class as you click
 //and saving the induvidual values when using the slider
 filterOptions.forEach((option) => {
@@ -55,7 +49,7 @@ filterOptions.forEach((option) => {
     document.querySelector(".filter .active").classList.remove("active");
     option.classList.add("active");
 
-//changing the name of the options as you click as saving its value individually 
+    //changing the name of the options as you click as saving its value individually
     filterName.innerText = option.innerText;
 
     //if option.id === "" assign the value to the designed variable.
@@ -81,13 +75,11 @@ filterOptions.forEach((option) => {
 //actually changing the value of each option by assigning the variable
 // to the value of the slider
 const updateFilter = () => {
-
- // changing the static 100% to the value of the slider.
+  // changing the static 100% to the value of the slider.
   filterValue.innerHTML = `${filterSlider.value}`;
 
   //grabing the active option by its css style
   const selectedFilter = document.querySelector(".filter .active");
-
 
   //if the active option id === 'something' set the slider value to
   //the designed variables
@@ -109,7 +101,6 @@ const updateFilter = () => {
   applyFilter();
 };
 
-
 // on click if option.id === 'something' rotates, or flip.
 rotateOptions.forEach((option) => {
   option.addEventListener("click", () => {
@@ -123,11 +114,11 @@ rotateOptions.forEach((option) => {
       flipVertical = flipVertical === 1 ? -1 : 1;
     }
 
-  //this is what changes the picture, updateFilter function
-  //is changing the value and giving it to the designed variables
-  //but the applyFilter function is the one grabbing these variables
-  //that are recieving the values and applying it to the picture
-  //by grabbing the img and chaging its style properties.
+    //this is what changes the picture, updateFilter function
+    //is changing the value and giving it to the designed variables
+    //but the applyFilter function is the one grabbing these variables
+    //that are recieving the values and applying it to the picture
+    //by grabbing the img and chaging its style properties.
     applyFilter();
   });
 });
@@ -147,7 +138,7 @@ const resetFilter = () => {
 
 //create and save the img
 const saveImage = () => {
-  //create canvas  
+  //create canvas
   const canvas = document.createElement("canvas");
   //get 2d of the img
   const ctx = canvas.getContext("2d");
@@ -162,7 +153,7 @@ const saveImage = () => {
   if (rotate !== 0) {
     ctx.rotate((rotate * Math.PI) / 180);
   }
-  
+
   //saving the flips of the img
   ctx.scale(flipHorizontal, flipVertical);
 
@@ -185,7 +176,6 @@ const saveImage = () => {
   //download on click
   link.click();
 };
-
 
 //save the img
 saveImgBtn.addEventListener("click", saveImage);
